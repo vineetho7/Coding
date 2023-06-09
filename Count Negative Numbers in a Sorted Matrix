@@ -1,0 +1,53 @@
+1351. Count Negative Numbers in a Sorted Matrix
+Easy
+4.4K
+117
+Companies
+Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise, return the number of negative numbers in grid.
+
+
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        // int r=grid.size();
+        // int c=grid[0].size();
+        // int ans=0;
+        // for(int i=0;i<r;i++){
+        //     int low=0;
+        //     int high=c-1;
+        //     int k=c;
+        //     while(low<=high){
+        //         int mid=(low+high)/2;
+        //         if(grid[i][mid]<0){
+        //             high=mid-1;
+        //             k=mid;
+        //         }
+        //         else{
+        //             low=mid+1;
+        //         }
+        //     }
+        //     ans=ans+ c-k;
+
+        // }
+        // return ans;
+
+        int i=0;
+        int j=grid[0].size()-1;
+        int ans=0;
+        int n=grid.size();
+
+        while(i<n && j>=0){
+            if(grid[i][j]<0){
+                ans=ans+n-i;//counting the present in that column
+                j--;
+            }
+            else{
+                i++;
+            }
+        }
+        return ans;
+
+        
+    }
+};
