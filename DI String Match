@@ -1,0 +1,39 @@
+942. DI String Match
+Easy
+2.2K
+894
+Companies
+A permutation perm of n + 1 integers of all the integers in the range [0, n] can be represented as a string s of length n where:
+
+s[i] == 'I' if perm[i] < perm[i + 1], and
+s[i] == 'D' if perm[i] > perm[i + 1].
+Given a string s, reconstruct the permutation perm and return it. If there are multiple valid permutations perm, return any of them.
+
+
+
+class Solution {
+public:
+    vector<int> diStringMatch(string s) {
+        vector<int>ans;
+        int st=0;
+        int e=s.size();
+
+        for(int i=0;i<s.size();i++){
+            
+            if(s[i]=='I'){
+                ans.push_back(st);
+                st++;
+
+            }
+            else {
+                ans.push_back(e);
+                e--; 
+            }
+        }
+        ans.push_back(st);
+        return ans;
+
+
+         
+    }
+};
