@@ -1,0 +1,46 @@
+3. Longest Substring Without Repeating Characters
+Medium
+34.6K
+1.5K
+Companies
+Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+
+        int n=s.size();
+        int len=0;
+        unordered_map<char,int>m;
+
+        int l=0;
+
+        for(int i=0;i<n;i++){
+            if(m.find(s[i])==m.end()|| m[s[i]]<l){
+                m[s[i]]=i;
+                len=max(len,i-l+1);
+            }
+            else{
+                l=m[s[i]]+1;
+                m[s[i]]=i;
+            }
+        }
+        return len;
+        
+    }
+};
