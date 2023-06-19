@@ -1,0 +1,61 @@
+28. Find the Index of the First Occurrence in a String
+Easy
+3.7K
+196
+Companies
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+ 
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+
+
+        // vector<int>::iterator it;
+
+        // return haystack.find(needle);
+        // string t="";
+        // for(int i=0;i<haystack.size();i++){
+        //     t=t+haystack[i];
+        //     if(t==needle){
+        //         int k= ( needle.size()-i-1);
+        //         return abs(k);
+        //     }
+        //     else if(t.size()==needle.size()){
+        //         t.erase(t.begin(),t.end());
+        //     }
+        // }
+        // return -1;
+
+        int h=haystack.size();
+        int n= needle.size();
+        for(int i=0;i<h;i++){
+            if(haystack[i]==needle[0]){
+                cout<<i<<endl;
+                cout<<haystack[i]<< "=="<<needle[0]<<endl;
+                if(haystack.substr(i,n)==needle && (i+n-1)<h){
+                    cout<<haystack.substr(i,n)<<endl;
+                    return i;
+                }
+            }
+        }
+        return -1;
+
+
+        
+    }
+};
