@@ -1,0 +1,61 @@
+46. Permutations
+Medium
+16K
+261
+Companies
+Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+Example 2:
+
+Input: nums = [0,1]
+Output: [[0,1],[1,0]]
+Example 3:
+
+Input: nums = [1]
+Output: [[1]]
+
+class Solution {
+
+    void bt(vector<int>&nums, vector<vector<int>>&ans, vector<int>& p){
+
+        if(p.size()==nums.size()){
+            ans.push_back(p);
+            return ;
+        }
+        else{
+            for(int i=0;i<nums.size();i++){
+                
+                
+                if(find(p.begin(),p.end(),nums[i]) ==p.end()){
+                   
+                    p.push_back(nums[i]);
+                    bt(nums,ans,p);
+                    p.pop_back();
+                    
+                }
+            }
+        }
+        
+    }
+
+
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+
+        vector<vector<int>> ans;
+        vector<int> p;
+        
+
+        bt(nums,ans,p);
+        return ans;
+
+
+        
+    }
+};
