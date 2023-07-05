@@ -1,0 +1,69 @@
+59. Spiral Matrix II
+Medium
+5.8K
+236
+Companies
+Given a positive integer n, generate an n x n matrix filled with elements from 1 to n2 in spiral order.
+
+ 
+
+Example 1:
+
+
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+Example 2:
+
+Input: n = 1
+Output: [[1]]
+
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+
+         int row=n;// matrix.size();
+        int col=n;//matrix[0].size();
+        int left=0;
+        int right=col-1;
+        int top=0;
+        int bottom=row-1;
+        vector<vector<int>>ans(n,vector<int>(n));
+        int count=1;
+
+        while(left<=right && top<=bottom){
+            for(int i=left;i<=right;i++){
+                ans[top][i]=count;
+                count++;
+
+            }
+            top++;
+            for(int i=top;i<=bottom;i++){
+                ans[i][right]=count;
+                count++;
+            }
+            right--;
+            if(top<=bottom){
+                for(int i=right;i>=left;i--){
+                ans[bottom][i]=count;
+                count++;
+            }
+            bottom--;
+
+
+            }
+            if(left<=right){
+                for(int i=bottom;i>=top;i--){
+                ans[i][left]=count;
+                count++;
+            }
+            left++;
+
+            }
+            
+            
+
+        }
+        return ans;
+        
+    }
+};
