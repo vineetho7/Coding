@@ -1,0 +1,62 @@
+695. Max Area of Island
+Medium
+9.2K
+197
+Companies
+You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+The area of an island is the number of cells with a value 1 in the island.
+
+Return the maximum area of an island in grid. If there is no island, return 0.
+
+ 
+
+Example 1:
+
+
+Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Output: 6
+Explanation: The answer is not 11, because the island must be connected 4-directionally.
+
+
+class Solution {
+public:
+
+    int dfs(int i,int j, int m,int n,vector<vector<int>>& grid ){
+        
+
+        if(i>=m || j>=n || i<0 || j<0 || grid[i][j]!= 1){
+            return 0;
+
+        }
+        grid[i][j]= 0;
+        int down=dfs(i+1,j,m,n,grid);
+        int up=dfs(i-1,j,m,n,grid);
+        int left=dfs(i,j-1,m,n,grid);
+        int right=dfs(i,j+1,m,n,grid);
+        return down+up+left+right+1;
+
+
+    }
+
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+
+        int m=grid.size();
+        
+        int n = grid[0].size();
+        int maxArea=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]== 1){
+                    
+                    int area=dfs(i,j,m,n,grid);
+                    maxArea=max(maxArea,area);
+
+
+                }
+            }
+        }
+        return maxArea;
+        
+    }
+};
