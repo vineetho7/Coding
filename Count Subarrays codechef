@@ -1,0 +1,41 @@
+
+​https://www.codechef.com/practice/INTDP01/problems/SUBINC
+
+
+#include <iostream>
+using namespace std;
+
+#include<vector>
+
+int main(void) {
+	// your code goes here
+	
+	int t;
+	cin>>t;
+	while(t--){
+	    long n;
+	    cin>>n;
+	    vector<long>a(n);
+	    for(int i=0;i<n;i++){
+	        cin>>a[i];
+	    }
+	    
+	    vector<int>ans(n,1);
+	    long count=0;
+	    
+	    for(int i=n-1;i>=1;i--){
+	        if((a[i]>= a[i-1])){
+	            ans[i-1]=ans[i]+1;
+	        }
+	    }
+	    
+	    for(int i=0;i<n;i++){
+	       count+=ans[i];
+	    }
+	    cout<<count<<endl;
+	}
+	
+	
+	return 0;
+}
+
