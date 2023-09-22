@@ -1,0 +1,31 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int n;
+	cin>>n;
+	vector<int>a(n);
+	vector<int>dp(n,0);
+	for(int i=0;i<n;i++){
+	    cin>>a[i];
+	}
+	int x=100000006;
+	
+	if(n<=3){
+	    for(int i=0;i<a.size();i++){
+	        x=min(x,a[i]);
+	    }
+	    cout<<x<<endl;
+	    return 0;
+	}
+	for(int i=0;i<3;i++){
+	    dp[i]=a[i];
+	}
+	for(int i=3;i<n;i++){
+	    dp[i]=a[i]+min(dp[i-1],min(dp[i-2],dp[i-3]));
+	}
+	cout<<min(dp[n-1],min(dp[n-2],dp[n-3]))<<endl;
+	return 0;
+}
