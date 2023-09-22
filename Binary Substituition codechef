@@ -1,0 +1,35 @@
+#include <iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    string s;
+	    cin>>s;
+	    
+	    if(s.length()<2){
+	        cout<<1<<endl;
+	        continue;
+	    }
+	    vector<int>dp(s.length(),0);
+	    dp[0]=1;
+	    dp[1]=s[0]!=s[1]?2:1;
+	    for(int i=2;i<s.length();i++){
+	        if(s[i-1]!=s[i]){
+	            dp[i]=(dp[i-1]+dp[i-2])%998244353;
+	        }
+	        else{
+	            dp[i]=dp[i-1];
+	        }
+	        
+	    }
+	    cout<<dp[s.length()-1]<<endl;
+	        
+	}
+	return 0;
+}
