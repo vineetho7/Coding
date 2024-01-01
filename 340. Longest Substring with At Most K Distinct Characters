@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
+
+
+        vector<int> map(128,0);
+        int counter=0; // check whether the substring is valid
+        int begin=0, end=0; //two pointers, one point to tail and 
+        int d=INT_MIN; //the length of substring
+
+        //for() { /* initialize the hash map here */ }
+
+        while(end<s.size()){
+
+            if(map[s[end++]]++ ==0 ){  
+                counter++;
+                cout<<counter<<endl;/* modify counter here */ }
+
+            while(counter>k/* counter condition */){ 
+                
+                 
+                 /* update d here if finding minimum*/
+
+                //increase begin to make it invalid/valid again
+                
+                if(map[s[begin++]]-- ==1){ counter--;/*modify counter here*/ }
+            }  
+            
+            d=max(d,end-begin);
+
+            /* update d here if finding maximum*/
+        }
+        return d;
+        
+    }
+};
