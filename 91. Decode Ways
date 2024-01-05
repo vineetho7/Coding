@@ -48,15 +48,22 @@ public:
 
         int n= s.length();
         vector<int>dp(n+1,0);
-        
+        int nxt1=1,nxt2=0;
         dp[n]=1;
         for(int i=n-1;i>=0;i--){
-            dp[i]=dp[i+1];
+            //dp[i]=dp[i+1];
+            int cur=nxt1;
             if(i+1 <n && s.substr(i,2)<="26"){
-                dp[i]+=dp[i+2];
+                //dp[i]+=dp[i+2];
+                cur=cur+nxt2;
             }
-            if(s[i]=='0'){dp[i]=0;}
+            if(s[i]=='0'){
+                //dp[i]=0;
+                cur=0;
+                }
+            nxt2=nxt1;
+            nxt1=cur;
         }
-        return dp[0];
+        return nxt1;
     }
 };
