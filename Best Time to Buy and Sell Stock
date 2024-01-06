@@ -9,7 +9,10 @@ You want to maximize your profit by choosing a single day to buy one stock and c
 
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
- 
+
+
+
+
 
 Example 1:
 
@@ -22,6 +25,28 @@ Example 2:
 Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
+
+
+
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+        int prof=0;
+        int n=prices.size();
+        int minp=INT_MAX;
+        for(int i=0;i<n;i++){
+            minp=min(minp,prices[i]);
+            prof=max(prof,prices[i]-minp);
+            //minp=min(minp,prices[i]);
+            
+        }
+        return prof;
+        
+    }
+};
+
 
 class Solution {
 public:
