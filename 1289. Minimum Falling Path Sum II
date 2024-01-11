@@ -63,3 +63,65 @@ public:
         
     }
 };
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& grid) {
+
+        int r=grid.size();
+        int c=grid[0].size();
+        vector<vector<int>>dp(r,vector<int>(r,0));
+        int m1=INT_MAX;
+        int m2=INT_MAX;
+        int ind1,ind2;
+        for(int i=0;i<grid.size();i++){
+            dp[0][i]=grid[0][i];
+            if(grid[0][i]<m1){
+                m2=m1;
+                m1=grid[0][i];
+                ind1=i;
+            }
+            else if(grid[0][i]<m2){
+                m2=grid[0][i];
+                ind2=i;
+            }
+        }
+
+        for(int i=1;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(j!=ind1){
+                    grid[i][j]+=m1;
+                }
+                else{
+                    grid[i][j]+=m2;
+                }
+            }
+            m1 = m2 = INT_MAX;
+                for(int j = 0; j < r; j++){
+                    if(grid[i][j] < m1){
+                        m2 = m1;
+                        m1 = grid[i][j];
+                        ind1 = j;
+                    }else if(grid[i][j]<m2){
+                        m2 = grid[i][j];
+                        ind2 = j;
+                    }
+                }
+
+                
+                
+            }
+        
+        
+        return min(m1,m2);
+        
+    }
+};
