@@ -20,20 +20,37 @@ class Solution {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
 
-        sort(intervals.begin(),intervals.end());
-        priority_queue<int, vector<int>,greater<int>>pq;
-        int maxRooms=0;
-        for(auto interval:intervals){
-            int start=interval[0];
-            int end=interval[1];
-            while(!pq.empty() && pq.top()<=start){
-                pq.pop();
-            }
-            pq.push(end);
-            cout<<"iii "<<pq.size()<<endl;
-            maxRooms = max(maxRooms,(int)pq.size());
+        // sort(intervals.begin(),intervals.end());
+        // priority_queue<int, vector<int>,greater<int>>pq;
+        // int maxRooms=0;
+        // for(auto interval:intervals){
+        //     int start=interval[0];
+        //     int end=interval[1];
+        //     while(!pq.empty() && pq.top()<=start){
+        //         pq.pop();
+        //     }
+        //     pq.push(end);
+        //     cout<<"iii "<<pq.size()<<endl;
+        //     maxRooms = max(maxRooms,(int)pq.size());
+        // }
+        // return maxRooms;
+        int lim=1e6+5;
+        vector<int>a(lim,0);
+        for(auto i: intervals){
+            a[i[0]]++;
+            a[i[1]]--;
         }
-        return maxRooms;
+
+        int ans=0;
+        int curr=0;
+        for(int i=0; i<lim;i++){
+            curr=curr+a[i];
+            ans=max(ans,curr);
+
+        }
+        return ans;
+
+
         
     }
 };
