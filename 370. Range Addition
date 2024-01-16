@@ -1,0 +1,70 @@
+370. Range Addition
+Solved
+Medium
+Topics
+Companies
+Hint
+You are given an integer length and an array updates where updates[i] = [startIdxi, endIdxi, inci].
+
+You have an array arr of length length with all zeros, and you have some operation to apply on arr. In the ith operation, you should increment all the elements arr[startIdxi], arr[startIdxi + 1], ..., arr[endIdxi] by inci.
+
+Return arr after applying all the updates.
+
+ 
+
+Example 1:
+
+
+Input: length = 5, updates = [[1,3,2],[2,4,3],[0,2,-2]]
+Output: [-2,0,3,5,3]
+Example 2:
+
+Input: length = 10, updates = [[2,4,6],[5,6,8],[1,9,-4]]
+Output: [0,-4,2,2,2,4,4,-4,-4,-4]
+ 
+
+Constraints:
+
+1 <= length <= 105
+0 <= updates.length <= 104
+0 <= startIdxi <= endIdxi < length
+-1000 <= inci <= 1000
+
+
+class Solution {
+public:
+    vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
+        // vector<int>v(length,0);
+        // for(auto i: updates){
+        //     int l=i[0];
+        //     int r=i[1];
+        //     int val=i[2];
+        //     for(int i=l;i<=r;i++){
+        //         v[i]+=val;
+        //     }
+        // }
+        // return v;
+
+        vector<int>v(length,0);
+        for(auto i: updates){
+            int l= i[0];
+            int r=i[1];
+            int val=i[2];
+            v[l]+=val;
+            if(r<length-1){
+                v[r+1]-=val;
+            }
+        }
+        int ans=0;
+        //vector<int>res(length,0);
+        for(int i=0;i<length;i++){
+            ans+=v[i];
+            //res[i]=ans;
+            v[i]=ans;
+        }
+
+        return v;
+
+        
+    }
+};
